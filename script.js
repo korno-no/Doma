@@ -43,20 +43,28 @@ class dom{
         this.src = "./img/dom_fire.jpg"
         this.htmlTag.src = "./img/dom_fire.jpg"
     }
+
+    tushenie(){
+        this.fire = true
+        this.src = "./img/dom.jpg"
+        this.htmlTag.src = "./img/dom.jpg"
+    }
+
 }
 
 class vedro{
     constructor(
 
-        tag = null,
+        htmlTag = null,
         src=''
     ){  
-        this.tag = tag,
+        this.htmlTag = htmlTag,
         this.src = src
 
-        this.tag.src = src
+        this.htmlTag.src = src
 
     }
+    
 }
  
 
@@ -71,53 +79,64 @@ for(let i=0; i<10; i++){
             './img/dom.jpg',     
         )
     )
-
-    dlyaDomaEl.appendChild(massivDomov[i].htmlTag)
-    document.getElementsByTagName('img')[i].style.width = 270 + 'px'// мне кажется эта строчка должна работать на все имг, а как задать класс я не понимаю, отому что js уже занял это слово
+    
    
-
-    massivVeder.push (
-        new vedro(
-            
-            document.createElement('img'),
-            './img/vedro.jpg' 
+        massivVeder.push (
+            new vedro(       
+                document.createElement('img'),
+                './img/vedro.jpg' 
+            )
         )
-    )
+    
+  
+    
+    
+    
+    
+    dlyaDomaEl.appendChild(massivDomov[i].htmlTag) 
+    massivDomov[i].htmlTag.style.width = '150px'
+    
+    dlyaVedraEl.appendChild(massivVeder[i].htmlTag)
+    massivVeder[i].htmlTag.style.width= '150px'
+    massivVeder[i].htmlTag.style.opacity = 0
 
-
-    dlyaVedraEl.appendChild(massivVeder[i].tag) // дурацкие огроные ведра!!!
-
-    console.log(massivVeder)     
- 
-
-   
 }
-
 
 
 
 window.setInterval(function () {
    
-    var whichDom = Math.floor(Math.random()*10)
+    var whichIND = Math.floor(Math.random()*10)
     
     randomTime()
     
     function randomTime(){
 
-        console.log(whichDom)
+        console.log(whichIND)
 
         window.setTimeout(function() {
             
-            massivDomov[whichDom].vozgoranie()
-
+            massivDomov[whichIND].vozgoranie()
+            
         }, 3000); 
 
+        window.setTimeout(function() {
+            
+            massivVeder[whichIND].htmlTag.style.opacity = 1
+            
+        }, 4000); 
+        window.setTimeout(function() {
+            
+            massivVeder[whichIND].htmlTag.style.opacity = 0
+            
+        }, 9000); 
+        window.setTimeout(function() {
+            
+            massivDomov[whichIND].tushenie()
+            
+        }, 9000); 
+          
     }
-}, 1000); 
-
-
-
-
-
+}, 2000); 
 
 console.log(massivDomov)
