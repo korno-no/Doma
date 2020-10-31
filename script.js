@@ -9,10 +9,6 @@
   }, 1000); */
 
 
-
-
-
-
 var dlyaDomaEl=document.getElementById('dlyaDoma')
 
 var dlyaVedraEl=document.getElementById('dlyaVedra')
@@ -20,9 +16,6 @@ var dlyaVedraEl=document.getElementById('dlyaVedra')
 const massivDomov = []
 
 const massivVeder = []
-
-
-
 
 class dom{
     constructor(
@@ -67,8 +60,6 @@ class vedro{
     
 }
  
-
-
 for(let i=0; i<10; i++){
 
     massivDomov.push  (
@@ -88,10 +79,6 @@ for(let i=0; i<10; i++){
             )
         )
     
-  
-    
-    
-    
     
     dlyaDomaEl.appendChild(massivDomov[i].htmlTag) 
     massivDomov[i].htmlTag.style.width = '150px'
@@ -101,12 +88,15 @@ for(let i=0; i<10; i++){
     massivVeder[i].htmlTag.style.opacity = 0
 
 }
+function myRandom(fromN, toN){ 
 
-
+    return Math.floor(Math.random()*(toN-fromN + 1))+fromN
+}
 
 window.setInterval(function () {
    
-    var whichIND = Math.floor(Math.random()*10)
+    var whichIND = myRandom(0,9)
+    var time = myRandom(1000,9000)
     
     randomTime()
     
@@ -117,25 +107,16 @@ window.setInterval(function () {
         window.setTimeout(function() {
             
             massivDomov[whichIND].vozgoranie()
+            massivVeder[whichIND].htmlTag.style.opacity = 1
             
-        }, 3000); 
+        }, time); 
 
         window.setTimeout(function() {
             
-            massivVeder[whichIND].htmlTag.style.opacity = 1
-            
-        }, 4000); 
-        window.setTimeout(function() {
-            
+            massivDomov[whichIND].tushenie()
             massivVeder[whichIND].htmlTag.style.opacity = 0
             
-        }, 9000); 
-        window.setTimeout(function() {
-            
-            massivDomov[whichIND].tushenie()
-            
-        }, 9000); 
-          
+        }, time+5000); 
     }
 }, 2000); 
 
